@@ -1,0 +1,103 @@
+# This is a text file that consists of all the commands ran on Linux with the Ubuntu server machine
+
+# Install Ansible
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt update
+sudo apt install ansible
+
+# Add in hosts
+sudo vim /etc/ansible/hosts  
+
+[servers]
+centos1 ansible_host=198.18.134.49
+centos2 ansible_host=198.18.134.50
+
+[all:vars]
+
+# Save this file and the we test it if we have added them properly.
+ansible-inventory --list -y
+
+# Next part is the Key gen:
+ssh-keygen -t rsa
+
+#Enter file in which to save the key (/home/tecmint/.ssh/id_rsa): [Press enter key]
+#Created directory '/home/tecmint/.ssh'.
+#Enter passphrase (empty for no passphrase): [Press enter key]
+#Enter same passphrase again: [Press enter key]
+
+# Copy key to the two servers
+cat .ssh/id_rsa.pub | ssh root@centos1.dcloud.cisco.com 'cat >> .ssh/authorized_keys'  -----> this command shud always runs in this path '/home/tecmint/.ssh/id_rsa'
+
+# Make sure to change directory to home directory before creating
+cd ~
+pwd
+
+# Ideally after this we should be able to login into centos1 & 2 without password!
+ssh root@centos1.dcloud.cisco.com
+
+# Shouldn't ask password
+exit
+ssh root@centos2.dcloud.cisco.com
+
+# Then we check for ping-pong
+ansible all -m ping -u root
+
+# Once the connection is established we proceed for playbook!
+
+# Check for our hosts
+
+cat /etc/ansible/hosts
+
+# Then add our hosts inventory file
+
+# Also before running ansible we have to create a hosts file with our host IP.
+
+vi hosts 
+
+[webserver_1]
+198.18.134.49
+[webserver_2]
+198.18.134.50
+
+# Then our create playbook and nginx files
+
+sudo vi nginx-install.yml 
+
+# Playbook is located in an separate file labeled nginx-install.yml 
+# Testing 
+cat nginx-install.yml
+# checking if yum module is installed
+yum list installed | grep nginx 
+sudo apt-get install yum 
+
+# Create html file index.html.j2
+mkdir templates
+cd templates
+vi index.html.j2
+
+<html>
+  <center><h1> Hello World! this is {{ ansible_hostname }} </h1>
+  </center>
+</html>
+
+# Running playbook (go back to main directory using cd ~) 
+
+ansible-playbook -i hosts nginx-install.yml --check
+
+# Go to centos1 and check the version of nginx
+
+ssh root@198.18.134.49
+nginx -V
+
+# After successful deploying, now to undeploy write another yml file.
+
+sudo vi nginx-uninstall.yml 
+
+# Playbook is located in an separate file labeled nginx-uninstall.yml 
+
+ansible-playbook -i hosts nginx-uninstall.yml
+
+# Now once again check the centos1 version of nginx if it is still available!
+# and we are doonnneeeee !
+
+
