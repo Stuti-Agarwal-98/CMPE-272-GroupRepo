@@ -2,10 +2,10 @@ from flask import Flask, render_template, request, redirect
 import tweepy
 
 
-consumer_key = 'WlIzfZwIEstFBZOD4hMGS4Bir'
-consumer_secret = 'SEZk52digovwa4YCPtlTJGBIv3ZuFo7qjISlNB1YcUoprOL0Sr'
-access_token = '1311545437283708928-3EMh6KSCbCFyAqfEf3j20r6JMNrqQT'
-access_token_secret = 'CmtWiMs9c4I2VVzAVQ74Am9Cf5C7hc6PqbLQFhJlWsQem'
+consumer_key = ""
+consumer_secret = ""
+access_token = ""
+access_token_secret = ""
 
 app = Flask(__name__)
 
