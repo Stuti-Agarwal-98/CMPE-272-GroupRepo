@@ -2,31 +2,30 @@ from flask import Flask, render_template, request, redirect
 import tweepy
 
 
-consumer_key = 
-consumer_secret = 
-access_token = 
-access_token_secret = 
+consumer_key = 'WlIzfZwIEstFBZOD4hMGS4Bir'
+consumer_secret = 'SEZk52digovwa4YCPtlTJGBIv3ZuFo7qjISlNB1YcUoprOL0Sr'
+access_token = '1311545437283708928-3EMh6KSCbCFyAqfEf3j20r6JMNrqQT'
+access_token_secret = 'CmtWiMs9c4I2VVzAVQ74Am9Cf5C7hc6PqbLQFhJlWsQem'
 
 app = Flask(__name__)
 
+# HTML code by Tripura
+
+# Code by Stuti
 @app.route('/')
-def index():
-	
+def retrieve_user_tweets():
+
 	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 	auth.set_access_token(access_token, access_token_secret)
 	api = tweepy.API(auth)
 	
 	Retrieve = request.args.get('q')
 	public_tweets = api.user_timeline(Retrieve)
-	
-	#status_id = new_status.id #get the id of tweet
-	#api.destroy_status(status_id)	
-
+	print(public_tweets)
 	return render_template('home.html', tweets=public_tweets)
 
-
+# Code by Haley
 @app.route('/tweet', methods=['POST','GET'])
-
 def post_tweet():
 	
 	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -40,18 +39,41 @@ def post_tweet():
 	else:
 		return render_template('home.html')
 
+# Code by Haley
+@app.route('/delete_tweet', methods=['POST','GET'])
 def del_tweet():
 	
 	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 	auth.set_access_token(access_token, access_token_secret)
 	api = tweepy.API(auth)
-	
+
 	if request.method == 'POST':
-		Create = request.form['Tweet']
-		post = api.update_status(Create)
+		Delete_Tweet = request.form['Tweet']
+		del_part = Delete_Tweet.rpartition('/')
+		status_id = del_part[2]
+		api.destroy_status(status_id)
 		return redirect('/')
 	else:
-		return render_template('home.html')
+		return render_template('home.html')	
+
+# Code by Stuti
+@app.route('/delete_all')
+def del_all():
+	
+	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+	auth.set_access_token(access_token, access_token_secret)
+	api = tweepy.API(auth)
+
+	user_tweets = api.user_timeline
+	print(user_tweets)
+	for status in tweepy.Cursor(user_tweets).items():
+		try:
+			api.destroy_status(status.id)
+			print("Deleted:", status.id)
+		except:
+			print("Failed to delete:", status.id)
+			return render_template('home.html')	
+	return redirect('/')
 
 if __name__=='__main__':
 	app.run(debug=True)
