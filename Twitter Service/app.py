@@ -1,16 +1,10 @@
 from flask import Flask, render_template, request, redirect
 import tweepy
-
-
-consumer_key = ""
-consumer_secret = ""
-access_token = ""
-access_token_secret = ""
+from local_config import *
 
 app = Flask(__name__)
 
 # HTML code by Tripura
-
 # Code by Stuti
 @app.route('/')
 def retrieve_user_tweets():
@@ -21,7 +15,7 @@ def retrieve_user_tweets():
 	
 	Retrieve = request.args.get('q')
 	public_tweets = api.user_timeline(Retrieve)
-	print(public_tweets)
+
 	return render_template('home.html', tweets=public_tweets)
 
 # Code by Haley
@@ -74,6 +68,7 @@ def del_all():
 			print("Failed to delete:", status.id)
 			return render_template('home.html')	
 	return redirect('/')
+
 
 if __name__=='__main__':
 	app.run(debug=True)
