@@ -16,7 +16,8 @@
 	
 	<div class="form">
 		<form class="form-inline" method="GET" action="{{ url_for('retrieve_user_tweets') }}">
-		<input class="form-control" type="text" size="50%" name="q" placeholder="Enter User Name">
+		<input class="form-control" type="text" size="50%" name="q" placeholder="Enter User Name" required
+       minlength="4" maxlength="15">
 		<button class="btn btn-primary", type="submit">Retrieve</button>		
 		</form>
 		{% for tweet in tweets %}
@@ -31,7 +32,7 @@
 		&nbsp;
 
 		<form class="form-inline" method="POST" action="{{ url_for('post_tweet') }}"> 
-		<input class="form-control" type="text" size="50%" name="Tweet" placeholder="Enter Tweet">    
+		<input class="form-control" type="text" size="50%" name="Tweet" placeholder="Enter Tweet" required maxlength="280">    
 		<button class="btn btn-primary" type="submit" >Post</button>
 		</form>
 		<p style="color:white; font-style: italic; text-align:center; font-family: Helvetica Neue;">(no spamming the same tweet!)</p>  
