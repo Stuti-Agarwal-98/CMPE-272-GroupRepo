@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Daemon Decoder: Twitter Service</title>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+<body style="background-color:rgb(29, 50, 54);">
+	&nbsp;
+	<h1 style="text-align:center; color:white; font-family: Helvetica Neue; line-height: 1.75" >Daemon Decoders</h1>
+	<h3 style="text-align:center; color:rgb(29, 161, 242); font-family: Helvetica Neue;">Twitter Service</h3>
+
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+		<div class="p-5">
+	
+	<div class="form">
+		<form class="form-inline" method="GET" action="{{ url_for('retrieve_user_tweets') }}">
+		<input class="form-control" type="text" size="50%" name="q" placeholder="Enter User Name" required
+       minlength="4" maxlength="15">
+		<button class="btn btn-primary", type="submit">Retrieve</button>		
+		</form>
+		{% for tweet in tweets %}
+		<div class="card mt-2">
+		<div class="card-body">
+			<div class="card-text">
+			{{ tweet._json.text }}
+			</div>
+			</div>
+		</div>			   
+		{% endfor %}
+		&nbsp;
+
+		<form class="form-inline" method="POST" action="{{ url_for('post_tweet') }}"> 
+		<input class="form-control" type="text" size="50%" name="Tweet" placeholder="Enter Tweet" required maxlength="280">    
+		<button class="btn btn-primary" type="submit" >Post</button>
+		</form>
+		<p style="color:white; font-style: italic; text-align:center; font-family: Helvetica Neue;">(no spamming the same tweet!)</p>  
+		&nbsp;
+
+		<form class="form-inline" method="POST" action="{{ url_for('del_tweet') }}"> 
+		<input class="form-control" type="text" size="50%" name="Tweet" placeholder="Enter URL to Delete Tweet">    
+		<button class="btn btn-primary" type="submit">Delete</button>
+		</form>
+		&nbsp;
+
+		<form class="form-inline" method="GET" action="{{ url_for('del_all') }}"> 
+		<button class="btn btn-primary" type="submit">Delete All</button>
+		</form>		
+	</div>
+	</div>
+	</div>
+	</div>
+</div>
+</body>
+</html>
+
+<style type="text/css">
+
+	.form {
+		margin: 0 auto;
+		width: 440px;
+	}
+
+	.form input{
+		display: inline-block;
+		text-align: center;
+		margin: auto;
+	}
+
+	.form button{
+		display: block;
+		text-align: center;
+		margin: 0 auto;
+	}
+</style>

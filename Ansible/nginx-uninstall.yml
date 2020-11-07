@@ -1,0 +1,18 @@
+---
+ - hosts: all
+   user: root
+   tasks:
+    - name: Add epel-repo
+      yum:
+       name: epel-release
+       state: present
+
+    - name: Stop Nginx
+      service:
+       name: nginx
+       state: stopped
+
+    - name: Un-install Nginx
+      yum:
+       name: nginx
+       state: absent
