@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- above is JQuery AND BOOTSTRAP Reference 
+ below is datatable reference -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+	<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+	
+	<script type="text/javascript">
+        $(document).ready(function () {
+			 $('#Reqtable').dataTable();
+			  $('#App_table').dataTable();
+        });
+    </script>
+	
+	</head>
+    
+   
+
+
+  <style>
+	.padding-10{
+		padding:10px;
+	}
+	 
+ </style>
+    <body>
+	
+	<div>
+  <h3 class="text-center">Daemon Decoders Project Portal</h3>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Home">Home</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#ProjectReq">Requirements</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Applicationentries">Applications Received</a></li>
+  </ul>
+  <br>
+	
+	<div class="tab-content">
+	<div id="Home" class="tab-pane fade show active" role="tabpanel">
+	
+		<div class="container-fluid">    
+		  <div class="row content">
+			<div class="col-sm-1 sidenav">
+			</div>
+			<div class="col-sm-9 text-left"> 
+			  <h1>Welcome</h1>
+			  <p>Welcome to Daemon Decoders Project Portal.Using this Portal you can search for Current projects in the company to get assigned to or can look for un-assigned resources to tag to your project.The portal is easy for the Employees as well as Project Managers to gather information regarding available resources and project requirements.</p>
+			  <hr>
+			  <h3>Best Work Ethic wins</h3>
+			  <p>Look for your dream team to work with...</p>
+			</div>
+			<div class="col-sm-2 sidenav">
+			  <div class="well">
+				<img src="employee1.png" width="150" height="160">
+			  </div>
+			  <div class="well">
+				<img src="employee2.png" width="150" height="160">
+			  </div>
+			</div>
+		  </div>
+		</div>
+	
+	</div>
+	<div id="ProjectReq" class="tab-pane fade padding-10" role="tabpanel">
+		<table id="Reqtable" class="table table-condensed table-striped table-hover">
+			<thead>
+				  <tr>
+					 <th>
+					    Requirement Id
+				     </th>
+				     <th>
+					    Project Name
+				     </th>
+				     <th>
+					    Required Designation
+				     </th>
+				     <th>
+					    Required Skill-Set
+				     </th>
+				     <th>
+					    Application Status
+				     </th>
+			      </tr>
+            </thead>
+
+			<tbody>
+					<tr>
+						<td>
+							Projectdata1
+						</td>
+						<td>
+							Projectdata2
+						</td>
+						<td>
+							Projectdata3
+						</td>
+						<td>
+							Projectdata4
+						</td>
+					
+						<td>
+						  <button>Apply</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Project2data1
+						</td>
+						<td>
+							Project2data2
+						</td>
+						<td>
+							Project2data3
+						</td>
+						<td>
+							Project2data4
+						</td>
+						<td>
+						  <button>Apply</button>
+						</td>
+					</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	
+	<div id="Applicationentries" class="tab-pane fade padding-10" role="tabpanel">
+		<table id="App_table" class="table table-condensed table-striped table-hover">
+			<thead>
+				<tr>
+					<th>
+						Req Id
+					</th>
+				    <th>
+						Project Name
+					</th>
+					<th>
+						Employee Email-id
+					</th>
+					<th>
+						Employee Name
+					</th>
+					<th>
+						Employee Designation
+					</th>
+					<th>
+						Required Designation
+					</th>
+					<th>
+						Employee Skill-Set
+					</th>
+					<th>
+						Required Skill-Set
+					</th>
+					<th>
+						Approval Status
+					</th>
+				   
+					
+				</tr>
+			</thead>
+
+			<tbody>
+					<tr>
+						<td>
+							Employee1data1
+						</td>
+						<td>
+							Employee1data2
+						</td>
+						<td>
+							Employee1data3
+						</td>
+						<td>
+							Employee1data4
+						</td>
+						<td>
+							Employee1data5
+						</td>
+						<td>
+							Employee1data6
+						</td>
+						<td>
+							Employee1data7
+						</td>
+						<td>
+							Employee1data8
+						</td>
+						<td>
+						  <button>Accept</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Employee2data1
+						</td>
+						<td>
+							Employee2data2
+						</td>
+						<td>
+							Employee2data3
+						</td>
+						<td>
+							Employee2data4
+						</td>
+						<td>
+							Employee2data5
+						</td>
+						<td>
+							Employee2data6
+						</td>
+						<td>
+							Employee2data7
+						</td>
+						<td>
+							Employee2data8
+						</td>
+						<td>
+						  <button>Accept</button>
+						</td>
+					</tr>
+			</tbody>
+	</div>
+</div>
+</div>
+<p>Logout<a href='https://localhost.auth.us-west-1.amazoncognito.com/logout?client_id=4nn6fqe1ln9hck84f3q85hpc1v&logout_uri=http://localhost:8000/templates/index.html'>Logout</a></p>
+</body>
+
+   
+
+</html>
