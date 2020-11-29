@@ -1,0 +1,31 @@
+<html>
+    <script>
+	var Req_Table = (event)=>{
+
+		var requestOptions = {
+			method: 'GET',
+			redirect: 'follow'
+		};
+		// make API call with parameters and use promises to get response
+		fetch("https://d7rlzfc25d.execute-api.us-east-2.amazonaws.com/dev/employees", requestOptions)
+	}
+	// convert string to JSON
+	response = $.parseJSON(Req_Table);
+
+	$(function() {
+	$.each(response, function(i, item) {
+		var $tr = $('<tr>').append(
+			$('<td>').text(item.req_id),
+			$('<td>').text(item.project_name),
+            $('<td>').text(item.req_designation),
+            $('<td>').text(item.req_skillset),
+            $('<td>').text(item.req_apply),
+            $('<td>').text(item.id)
+		); //.appendTo('#records_table');
+		console.log($tr.wrap('<p>').html());
+	});
+    });
+    </script>
+    <body>
+    </body>
+</html>
